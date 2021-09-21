@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <title>
+            Finance Peer 
+        </title>
+        <link rel="stylesheet" href="fpcss.css" type="text/css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
+<script>
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+  apiKey: "AIzaSyDETLnb-78AljWSlAAY3TpzGhSdfpM733I",
+  authDomain: "loginpage-5217c.firebaseapp.com",
+  databaseURL: "https://loginpage-5217c-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "loginpage-5217c",
+  storageBucket: "loginpage-5217c.appspot.com",
+  messagingSenderId: "537376094193",
+  appId: "1:537376094193:web:3f7169c933b92acd7e3650",
+  measurementId: "G-EY0B0KF534"
+};
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+   firebase.analytics();
+  
+  const auth=firebase.auth()
+      
+      
+      
+      function signIn(){
+          
+          var email = document.getElementById("email");
+          var password = document.getElementById("password");
+          
+          const promise = auth.signInWithEmailAndPassword(email.value, password.value);
+          promise.catch(e => alert(e.message));
+          
+          alert("Signed In  " + email.value);
+          window.location.href = "task.html";
+          
+          
+      }
+      
+      
+      
+      auth.onAuthStateChanged(function(user){
+          
+          if(user){
+              
+              var email = user.email;
+              alert("Active User " + email);
+              
+              
+          }else{
+              
+              alert("No Active User");
+          }
+          
+          
+          
+      });
+      
+  
+  </script>
+    </head>
+    <body>
+        <div class="login-form">
+            <h1>Login Form</h1>
+            <form action="#" method="POST">
+                <p>Email</p>
+                <input type="email" name="email" placeholder="email">
+                <p>Password</p>
+                <input type="password" name="password" placeholder="password">
+                <a href="task.html">
+                    <button type="submit" onclick="signIn()">Sign In</button>
+                </a>
+            </form>
+        </div>
+    </body>
+</html>
